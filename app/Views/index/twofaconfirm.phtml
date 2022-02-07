@@ -1,0 +1,27 @@
+<div class="login-form login-signin py-11">
+	<!--begin::Form-->
+	<form class="form" novalidate="novalidate" method="post">
+		
+		<!--begin::Title-->
+		<div class="text-center pb-8">
+			<h2 class="signin">2FA Confirmation</h2>
+		</div>
+		<!--end::Title-->
+			<?php echo $this->flashSession->output(); ?>
+			<?php echo $this->flash->output(); ?>
+		<!--begin::Form group-->
+		<div class="mb-3">
+			<label class="font-size-h6 font-weight-bolder text-dark">Code</label>
+			<input type="text" name="code" required/>
+		</div>
+		<!--end::Form group-->
+		<!--begin::Action-->
+		<div class="login-action pt-2">
+			<div class="button-left">
+				<input type="submit" value="Proceed" class="loginbtn" style="border-radius:2px">
+			</div>
+		</div>
+		<!--end::Action-->
+	</form>
+	<!--end::Form-->
+</div>

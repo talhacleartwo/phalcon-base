@@ -1,0 +1,38 @@
+<form id="mainform" method="POST" action="/permissions/create/">
+	<div class="row">
+		<div class="columns twelve">
+			<div class="card">
+				<div class="card_head">
+					<h5 class="card_head_title">
+						Create New Permission
+					</h5>
+				</div>
+				<div class="card_body">
+					<div class="row">
+						<div class="columns four">
+							<div class="form-group">
+								<label>Name</label>
+								<?php echo $form->render('name');?>
+								<span class="form-text text-muted">Describe the permission.</span>
+							</div>
+						</div>
+						<div class="columns four">
+							<div class="form-group">
+								<label>Controller</label>
+								<?php echo $form->render('controller');?>
+								<span class="form-text text-muted">Enter Controller Name.</span>
+							</div>
+						</div>
+						<div class="columns four">
+							<div class="form-group">
+								<label>Action</label>
+								<?php echo $form->render('action');?>
+								<span class="form-text text-muted">Enter Action Name.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

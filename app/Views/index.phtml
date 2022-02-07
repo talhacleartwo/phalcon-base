@@ -1,0 +1,57 @@
+<?php
+
+use Phalcon\Tag;
+
+$title = $this->router->wasMatched() ? mb_strtoupper($this->router->getControllerName()) : ' ';
+Tag::setTitle($title);
+?>
+<!DOCTYPE html>
+<html lang="en">
+	<!--begin::Head-->
+	<head>
+		<base href="">
+		<meta charset="utf-8"/>
+		<title><?php echo "C2 Base System | "; echo Tag::getTitle(); ?> </title>
+		<meta name="description" content="Updates and statistics"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
+		<link rel="stylesheet" href="https://cdn.lineicons.com/3.0/lineicons.css"> 
+		<!--end::Fonts-->
+
+		<!--begin::Global Theme Bundle(used by all pages)-->
+		<?php $this->assets->outputJs('Globaljs'); ?>
+		<!--end::Global Theme Bundle-->
+		
+		<!--begin::Page Vendors Styles(used by this page)-->
+		<?php if (isset($select2)) { ?>
+			<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+		<?php } ?>
+		<?php if (isset($tables)) : ?>
+			<link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+			<script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+			<script src="/assets/js/core/tableutil.js"></script>
+		<?php endif; ?>
+		<?php $this->assets->outputCss('pageCss'); ?>
+		<?php $this->assets->outputJs('pageJs'); ?>
+		<!--end::Page Vendors Styles-->
+
+		<!--begin::Global Theme Styles(used by all pages)-->
+		<?php $this->assets->outputCss('Globalcss'); ?>
+		<!--end::Global Theme Styles-->
+
+		<!--begin::Layout Themes(used by all pages)-->
+		<!--end::Layout Themes-->
+		<link rel="shortcut icon" href="/assets/media/bg/DKU-logo-svg.png"/>
+		
+		
+	</head>
+	<!--end::Head-->
+
+
+		<?php echo $this->getContent(); ?>
+
+		
+	<!--end::Body-->
+</html>

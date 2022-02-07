@@ -1,0 +1,45 @@
+<?php 
+/*$ident = $this->auth->getIdentity();
+if (is_array($ident)) :*/
+?>
+	<!--<a href="/leads" class="text-primary font-size-h6 font-weight-bolder text-hover-primary pt-5" id="kt_login_forgot"> Leads </a>-->
+
+<div class="login-form login-signin py-11">
+	<!--begin::Form-->
+	<form class="form" novalidate="novalidate"  id="kt_login_signin_form" method="post">
+		<!--begin::Title-->
+		<div class="text-center pb-8">
+			<h2 class="signin">Sign In</h2>
+		</div>
+		<!--end::Title-->
+			<?php echo $this->flashSession->output(); ?>
+			<?php echo $this->flash->output(); ?>
+		<!--begin::Form group-->
+		<div class="mb-3">
+			<label class="font-size-h6 font-weight-bolder text-dark">Email</label>
+			<?php echo $form->render('email');?>
+		</div>
+		<!--end::Form group-->
+
+		<!--begin::Form group-->
+		<div class="mb-3">
+			<div class="d-flex justify-content-between mt-n5">
+				<label class="font-size-h6 font-weight-bolder text-dark pt-5">Password</label>
+			</div>
+			<?php echo $form->render('password');?>
+		</div>
+		<!--end::Form group-->
+
+		<!--begin::Action-->
+		<div class="login-action pt-2">
+			<div class="button-left">
+				<?php echo $form->render('Login');?>
+			</div>
+			<div class="help">
+				<a href="/forgotPassword" class="text-primary font-size-h6 text-hover-primary pt-5" id="kt_login_forgot">Forgot Password?</a>
+			</div>
+		</div>
+		<!--end::Action-->
+	</form>
+	<!--end::Form-->
+</div>

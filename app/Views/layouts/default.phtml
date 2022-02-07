@@ -1,0 +1,121 @@
+<body>
+	<!-- begin:: Page -->
+	<?php $this->partial("partials/topbar/topbar"); ?>
+	<div id="Body">
+		<?php $this->partial("partials/aside/main"); ?>
+		<?php $this->partial("partials/content/content"); ?>
+		<script>
+			<?php if(isset($_core_views)){echo '_core_views = ' . $_core_views . ';';} ?>
+		</script>
+	</div>
+	<!-- end:: Page -->
+</body>
+<?php
+/*
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--static kt-header-mobile--fixed kt-subheader--enabled kt-subheader--transparent kt-aside--enabled kt-aside--fixed kt-page--loading">
+	<!-- begin:: Page -->
+	<?php $this->partial("partials/header/mobile"); ?>
+	<div class="kt-grid kt-grid--hor kt-grid--root">
+		<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+			<!-- begin:: Aside -->
+			<button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
+			<div class="kt-aside kt-aside--fixed kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+				<?php $this->partial("partials/aside/brand"); ?>
+				<?php $this->partial("partials/aside/menu"); ?>
+			</div>
+			<!-- end:: Aside -->
+			<div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+				<!-- begin:: Header -->
+				<div id="kt_header" class="kt-header kt-grid__item " >
+					<?php $this->partial("partials/header/topbar"); ?>
+				</div>
+				<!-- end:: Header -->
+				<div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+					<?php $this->partial("partials/header/subheader"); ?>
+					<!-- begin:: Content -->
+					<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+						<!--<div class="alert alert-warning">We are currently experiencing some technical difficulties. We apologise for any inconvenience caused.</div>-->
+						<?php echo $this->flash->output(); ?>
+						<?php echo $this->flashSession->output(); ?>
+						<?php echo $this->getContent(); ?>
+					</div>
+					<!-- end:: Content -->
+				</div>
+				<?php $this->partial("partials/footer/footer-base"); ?>
+			</div>
+		</div>
+	</div>
+	
+	<!--begin::Global Config(global config for global JS scripts)-->
+	<script>
+		var KTAppSettings = {
+			"breakpoints": {
+				"sm": 576,
+				"md": 768,
+				"lg": 992,
+				"xl": 1200,
+				"xxl": 1200
+			},
+			"colors": {
+				"theme": {
+					"base": {
+						"white": "#ffffff",
+						"primary": "#0BB783",
+						"secondary": "#E5EAEE",
+						"success": "#1BC5BD",
+						"info": "#8950FC",
+						"warning": "#FFA800",
+						"danger": "#F64E60",
+						"light": "#F3F6F9",
+						"dark": "#212121"
+					},
+					"light": {
+						"white": "#ffffff",
+						"primary": "#D7F9EF",
+						"secondary": "#ECF0F3",
+						"success": "#C9F7F5",
+						"info": "#EEE5FF",
+						"warning": "#FFF4DE",
+						"danger": "#FFE2E5",
+						"light": "#F3F6F9",
+						"dark": "#D6D6E0"
+					},
+					"inverse": {
+						"white": "#ffffff",
+						"primary": "#ffffff",
+						"secondary": "#212121",
+						"success": "#ffffff",
+						"info": "#ffffff",
+						"warning": "#ffffff",
+						"danger": "#ffffff",
+						"light": "#464E5F",
+						"dark": "#ffffff"
+					}
+				},
+				"gray": {
+					"gray-100": "#F3F6F9",
+					"gray-200": "#ECF0F3",
+					"gray-300": "#E5EAEE",
+					"gray-400": "#D6D6E0",
+					"gray-500": "#B5B5C3",
+					"gray-600": "#80808F",
+					"gray-700": "#464E5F",
+					"gray-800": "#1B283F",
+					"gray-900": "#212121"
+				}
+			},
+			"font-family": "Poppins"
+		};
+	</script>
+	<!--end::Global Config-->
+
+	
+	
+	<!--begin::Page Scripts(used by this page)-->
+	<?php $this->assets->outputJs('pageJs'); ?>
+	<!--end::Page Scripts-->
+	
+	<!-- end:: Page -->
+</body>
+*/
+?>

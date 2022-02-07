@@ -1,0 +1,91 @@
+<?php
+
+use Models\Accounts\BookedProducts;
+
+$bookedproduct = new BookedProducts();
+?>
+<div class="mb-4">
+    <?php if ($this->flashSession->output()) { ?>
+        <div class="alert alert-success"><?php echo $this->flashSession->output(); ?></div>
+    <?php } ?>
+</div>
+<br>
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card card-custom">
+            <div class="card-header">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Options
+                    </h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="col-lg-12">
+                    <div class="m-portlet m-portlet--primary m-portlet--head-solid-bg m-portlet--bordered">
+
+                        <form class="m-form m-form--fit m-form--label-align-right" enctype="multipart/form-data" method="post">
+                            <div class="m-portlet__body">
+                                <div class="m-form__section m-form__section--first ">
+                                    <div class="form-group m-form__group row">
+                                        <input type="hidden" value="<?php echo $get->value ?>" name="id">
+                                        <div class="col-lg-4">
+                                            <div class="form-group m-form__group has-success"><label for="name">Category:</label>
+                                                <input type="text" id="opgroup" name="opgroup"
+                                                      value="<?php echo $get->opgroup ?>" class="form-control form-control-success m-input m-input--air m-input--pill"
+                                                       placeholder="Group Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4" style="display: none;">
+                                            <div class="form-group m-form__group has-success"><label
+                                                        for="ict_cordinator">Key:</label> <input type="text" id="key"
+                                                                                                 value="<?php echo $get->key ?>"      name="key"
+                                                                                                 class="form-control form-control-success m-input m-input--air m-input--pill"
+                                                                                                 placeholder="Key">
+                                                 </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group m-form__group has-success"><label
+                                                        for="ict_cordinator">Product Name:</label> <input type="text"
+                                                                                                   id="value"
+                                                                                                   value="<?php echo $get->value ?>"            name="value"
+                                                                                                   class="form-control form-control-success m-input m-input--air m-input--pill"
+                                                                                                   placeholder="Value">
+                                                 </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group m-form__group has-success"><label
+                                                        for="ict_cordinator">Company Name:</label>
+                                                <select name="company" class="form-group form-control">
+                                                    <option value="DKU" <?php echo $get->company=="DKU"?"selected":""; ?>>DKU</option>
+                                                    <option value="All Parts" <?php echo $get->company=="All Parts"?"selected":""; ?>>All Parts</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4" style="display:none;">
+                                            <div class="form-group m-form__group has-success"><label
+                                                        for="ict_cordinator">Image:</label> <input type="file"
+                                                                                                   name="image"
+                                                                                                   class="form-control form-control-success m-input m-input--air m-input--pill"
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__foot m-portlet__foot--fit">
+                                    <div class="m-form__actions m-form__actions">
+                                        <input type="submit"   value="Update" class="btn m-btn float-right btn-primary m-btn--gradient-to-info uppercase">
+                                        <a href="/option" style="margin-right: 10px;" class="btn m-btn float-right btn-light m-btn--gradient-to-info uppercase">Back</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div
+    </div>
+</div>
+</div>

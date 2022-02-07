@@ -1,0 +1,104 @@
+<form id="mainform" method="POST" action="/roles/edit/<?php echo $record->id; ?>">
+	<div class="row">
+		<div class="columns twelve">
+			<div class="card">
+				<div class="card_head">
+					<h5 class="card_head_title">
+						Manage '<?php echo $record->name; ?>' Capabilities
+					</h5>
+				</div>
+				<div class="card_body">
+					<div class="row">
+						<div class="columns twelve">
+							<?php
+								//Group permissions by controller
+								$grouped = [];
+								foreach($permissions as $perm)
+								{
+									if(isset($grouped[$perm->controller]))
+									{
+										$grouped[$perm->controller][] = $perm;
+									}
+									else
+									{
+										$grouped[$perm->controller] = [$perm];
+									}
+								}
+								
+								//Collect all assigned permission IDs
+								$assigned = [];
+								foreach($assignedPermissions as $ap)
+								{
+									$assigned[] = $ap->permissionid;
+								}
+								
+								foreach($grouped as $controller => $group)
+								{
+									echo '<div class="row controllerrow" style="">';
+										echo '<div class="columns twelve">';
+											echo '<h5 style="text-decoration:underline;">' . ucfirst($controller) . '</h5>';
+										echo '</div>';
+										echo '<div class="columns twelve">';
+											foreach($group as $perm)
+											{
+												echo '<div class="columns two">';
+													echo '<label>';
+														echo '<input type="checkbox" style="vertical-align: middle;" name="permissions[]" value="'.$perm->id.'" '.(in_array($perm->id,$assigned) ? 'checked' : '').'/>' . '<span style="margin-left:5px;">' . $perm->name . '</span>';
+													echo '</label>';
+												echo '</div>';
+											}
+										echo '</div>';
+									echo '</div>';
+								}
+							?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<div class="row">
+	<div class="columns twelve">
+		<div class="card">
+			<div class="card_head">
+				<h5 class="card_head_title">
+					Users Assigned To This Role
+				</h5>
+			</div>
+			<div class="card_body">
+				<div class="row">
+					<div class="columns twelve">
+						<table class="datatable_subgrid">
+							<thead>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Email</th>
+							</thead>
+							<tbody>
+								<?php foreach($record->AssignedRoles as $assignedRole) : $user = $assignedRole->user; ?>
+									<tr data-route="/users/edit/<?php echo $user->id; ?>">
+										<td><?php echo $user->firstname; ?> </td>
+										<td><?php echo $user->lastname; ?> </td>
+										<td><?php echo $user->email; ?> </td>
+									</tr>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.controllerrow
+	{
+		margin-bottom:15px;
+		padding-bottom: 15px;
+	}
+	.controllerrow:not(:last-child)
+	{
+		border-bottom: 1px solid #d8d8d8;
+	}
+</style>

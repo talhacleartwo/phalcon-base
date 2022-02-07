@@ -1,0 +1,149 @@
+<?php
+use Models\Accounts\BookedProducts;
+$bookedproduct=new BookedProducts();
+?>
+<div class="mb-4">
+    <?php if($this->flashSession->output())
+    {    ?>
+        <div class="alert alert-success"><?php echo $this->flashSession->output(); ?></div>
+    <?php } ?>
+</div>
+<div class="col-md-12">
+    <form id="findreport" action="/reports/filter" method="post">
+        <div class="row">
+            <div class="col-md-3">
+                 <select name="company" class="form-control">
+                    <option selected disabled>Select Company</option>
+                    <option value="dku" <?php if($company=="DKU"){echo "selected";} ?>>DKU</option>
+                    <option value="all-parts" <?php if($company=="All Parts"){echo "selected";} ?>>All Parts</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="datefrom" placeholder="Date From" required value="<?php echo $datefrom ?>" autocomplete="off" class="jobdate form-control" >
+
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="dateto" autocomplete="off" required value="<?php echo $dateto ?>" placeholder="Date To" class="jobdate form-control" >
+            </div>
+            <div class="col-md-3">
+                <input type="submit" value="Find" class="btn btn-primary" >
+                <input type="reset" value="Reset" class="btn btn-danger reportreset" >
+            </div>
+        </div>
+    </form></div>
+ <br>
+<br>
+
+<div class="row">
+
+
+    <div class="col-md-3">
+        <div class="card card-custom p-15" >
+            <h1 class="text-center"> Mechanic: </h1>
+            <h1 class="text-center">£ <?php echo $mechaniccost; ?></h1>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-custom p-15" >
+            <h1 class="text-center"> Revenue: </h1>
+            <h1 class="text-center">£ <?php echo $totalsum; ?></h1>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-custom p-15" >
+            <h1 class="text-center"> Cost Price: </h1>
+            <h1 class="text-center">£ <?php echo $costprice; ?></h1>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-custom p-15" >
+            <h1 class="text-center"> Profit: </h1>
+            <h1 class="text-center">£ <?php echo $totalsum-$costprice-$mechaniccost; ?></h1>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="card card-custom">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">
+                Report
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <div class="example-tools justify-content-center">
+
+                <div class="dropdown dropdown-inline mr-2">
+                    <button type="button" class="btn btn-hover-bg-success btn-text-success btn-hover-text-white border-0 font-weight-bold mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="la la-download text-secondary"></i> Tools
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                        <ul class="navi flex-column navi-hover py-2">
+                            <li class="navi-header font-weight-bolder text-uppercase font-size-xs text-success pb-2">
+                                Export Tools
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link" id="export_print">
+                                    <span class="navi-icon"><i class="la la-print"></i></span>
+                                    <span class="navi-text">Print</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link" id="export_excel">
+                                    <span class="navi-icon"><i class="la la-file-excel-o"></i></span>
+                                    <span class="navi-text">Excel</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link" id="export_csv">
+                                    <span class="navi-icon"><i class="la la-file-text-o"></i></span>
+                                    <span class="navi-text">CSV</span>
+                                </a>
+                            </li>
+                            <li class="navi-item">
+                                <a href="#" class="navi-link" id="export_pdf">
+                                    <span class="navi-icon"><i class="la la-file-pdf-o"></i></span>
+                                    <span class="navi-text">PDF</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-sm table-bordered datatable datatable-bordered datatable-head-custom" id="kt_datatable" style="margin-top: 13px !important">
+            <thead class="thead-light">
+            <tr>
+                <th>Unique Id</th>
+                <th>Order Products</th>
+                <th>Product Costs</th>
+                <th>Mechanic Cost</th>
+                <th>Duration</th>
+                <th>Time</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ( $data    as $key=>$value) : ?>
+                <tr>
+                    <td><a ><?php echo $value->uid; ?></a> </td>
+                    <td><?php echo count($value->bookedproducts); ?> </td>
+                    <td>£ <?php echo  $total[]=$bookedproduct::gettotalamount($value->id); ?> </td>
+                    <td>£ <?php echo $value->duration*$value->mechanic->costperhour ?> </td>
+                    <td><?php echo $value->duration; ?> </td>
+                    <td><?php echo $value->time; ?> </td>
+                    <td><?php echo $value->date; ?> </td>
+                </tr>
+            <?php
+            endforeach; ?>
+            </tbody>
+        </table>
+
+        <?php
+        echo array_sum($total);?>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<?php
+ use Models\Accounts\BookedProducts;
+$bookedproduct=new BookedProducts();
+?>
+<style>
+    table.table-bordered.dataTable tbody td, table.table-bordered.dataTable tbody th
+    {
+        text-transform: none;
+    }
+</style>
+<div class="mb-4">
+    <?php if($this->flashSession->output())
+    {    ?>
+        <div class="alert alert-success"><?php echo $this->flashSession->output(); ?></div>
+    <?php } ?>
+</div>
+<div class="row">
+
+<div class="col-md-12">
+<div class="card card-custom">
+    <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+            <h3 class="card-label">
+                Service
+                <span class="d-block text-muted pt-2 font-size-sm"><?php echo $title?></span>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <div class="dropdown dropdown-inline mr-2">
+                <button type="button" class="btn btn-hover-bg-success btn-text-success btn-hover-text-white border-0 font-weight-bold mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Export
+                </button>
+                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                    <ul class="navi flex-column navi-hover py-2">
+                        <li class="navi-header font-weight-bolder text-uppercase font-size-xs text-success pb-2">
+                            Export Tools
+                        </li>
+                        <li class="navi-item">
+                            <a href="#" class="navi-link" id="export_print">
+                                <span class="navi-icon"><i class="la la-print"></i></span>
+                                <span class="navi-text">Print</span>
+                            </a>
+                        </li>
+                        <li class="navi-item">
+                            <a href="#" class="navi-link" id="export_excel">
+                                <span class="navi-icon"><i class="la la-file-excel-o"></i></span>
+                                <span class="navi-text">Excel</span>
+                            </a>
+                        </li>
+                        <li class="navi-item">
+                            <a href="#" class="navi-link" id="export_csv">
+                                <span class="navi-icon"><i class="la la-file-text-o"></i></span>
+                                <span class="navi-text">CSV</span>
+                            </a>
+                        </li>
+                        <li class="navi-item">
+                            <a href="#" class="navi-link" id="export_pdf">
+                                <span class="navi-icon"><i class="la la-file-pdf-o"></i></span>
+                                <span class="navi-text">PDF</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+         </div>
+    </div>
+
+    <div class="card-body tablepadding">
+        <div class="  float-right d-flex">
+
+            <div   class="dataTables_filter"><label class="d-flex searchalignment">Search:&nbsp;&nbsp;
+                    <input type="text" class="form-control form-control-sm" id="myInputTextField"></label>
+            </div>
+
+            <a href="/option/add" class="btn btn-hover-bg-primary searchafterbtn btn-text-primary btn-hover-text-white border-0 font-weight-bold mr-2">
+                + New Service
+            </a>
+        </div>
+        <div class="clearfix"></div>
+        <table class="table table-sm table-bordered datatable datatable-bordered datatable-head-custom" id="kt_datatable" style="margin-top: 13px !important">
+            <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+<!--                <th>Image</th>-->
+                <th width="12%">Category</th>
+                <th width="12%">Key</th>
+                <th width="12%">Value</th>
+                <th width="12%">Status</th>
+                <th width="12%">Compnay</th>
+                <th width="12%">Date</th>
+                <th>Action</th>
+               </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($option as $item=>$value) {
+                ?>
+                <tr>
+                    <td><?php echo $value->id ?></td>
+<!--                    <td><img src="/optionimg/--><?php //echo $value->image ?><!--" onerror="this.src='assets/media/bg/DKU-logo-svg.png'" width="50px"></td>-->
+                    <td><?php echo $value->opgroup ?></td>
+                    <td><?php echo $value->key ?></td>
+                    <td><?php echo $value->value ?></td>
+                    <td><?php echo $value->company ?></td>
+                    <td><?php echo $value->status==0 ? "Active":"Inactive" ?></td>
+                    <td><?php echo date('d-m-Y',strtotime($value->created_at)) ?></td>
+                    <td nowrap="">
+                        <a href="/option/edit/<?php echo $value->id ?>" class="btn btn-sm btn-clean none-border btn-icon" title="Edit details">
+                            <i class="la la-edit"></i>
+                        </a>
+                        <a href="/option/trash/<?php echo $value->id ?> " class="btn btn-sm btn-clean none-border btn-icon" title="Edit details">
+                            <i class="la la-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php
+            } ?>
+
+            </tbody>
+        </table>
+
+        <?php ?>
+     </div>
+     </div>
+ </div>
+</div>

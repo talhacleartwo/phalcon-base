@@ -1,0 +1,41 @@
+<?php 
+ $ident = $this->auth->getIdentity(); 
+if (is_array($ident)) {
+?>
+
+<li class="m-menu__item <?php echo $this->router->getControllerName() == 'dashboard'?  'm-menu__item--active' : null;?>" aria-haspopup="true">
+	<?php echo $this->tag->linkTo(["dashboard", '<span class="m-menu__item-here"></span><span class="m-menu__link-text"> Dashboard</span>', "class" => "m-menu__link"]); ?>
+</li>
+
+
+<li class="m-menu__item <?php echo $this->router->getControllerName() == 'organisation'?  'm-menu__item--active' : null;?>">
+	<?php echo $this->tag->linkTo(["currentorganisation", '<span class="m-menu__item-here"></span><span class="m-menu__link-text"> organisations </span>', "class" => "m-menu__link"]); ?>
+</li>
+<li class="m-menu__item <?php echo $this->router->getControllerName() == 'Tickets'?  'm-menu__item--active' : null;?>">
+	<?php echo $this->tag->linkTo(["unresolved", '<span class="m-menu__item-here"></span><span class="m-menu__link-text"> Un Resolved tickets </span>', "class" => "m-menu__link"]); ?>
+</li>
+<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  data-menu-submenu-toggle="click" aria-haspopup="true">
+	<a  href="#" class="m-menu__link m-menu__toggle">
+		<span class="m-menu__item-here"></span><span class="m-menu__link-text"> Faculty</span><i class="m-menu__hor-arrow la la-angle-down"></i><i class="m-menu__ver-arrow la la-angle-right"></i>
+	</a>
+	<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left"><span class="m-menu__arrow m-menu__arrow--adjust"></span>
+		<ul class="m-menu__subnav">
+			<li class="m-menu__item "  aria-haspopup="true">
+			<?php echo $this->tag->linkTo(["staff", 'STAFF', "class" => "m-menu__link text-uppercase"]); ?>
+    		</li>
+    		<?php if ($ident['profile'] == 'Administrators'){ ?>
+    		<li class="m-menu__item "  aria-haspopup="true">
+    			<?php echo $this->tag->linkTo(["users", '<i class="font-gold fa fa-users"></i> Users', "class" => "m-menu__link text-uppercase"]); ?>
+    		</li>
+    		<li class="m-menu__item "  aria-haspopup="true">
+    			<?php echo $this->tag->linkTo(["profiles", '<i class="font-gold fa fa-users"></i> Profiles', "class" => "m-menu__link text-uppercase"]); ?>
+    		</li>
+    		<li class="m-menu__item "  aria-haspopup="true">
+    			<?php echo $this->tag->linkTo(["permissions", '<i class="font-gold fa fa-users"></i> Permissions', "class" => "m-menu__link text-uppercase"]); ?>
+    		</li>
+    		<?php }?>
+		</ul>
+	</div>
+</li>
+
+<?php }?>

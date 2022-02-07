@@ -1,0 +1,28 @@
+<?php
+echo $this->getContent();
+?>
+<div class="row">
+	<div class="columns twelve">
+		<table class="table datatable">
+			<thead class="thead-light">
+				<tr>
+					<th class="checkcol"><label class="all"><input type="checkbox" value="<?php echo $perm->id; ?>"><i class="lni lni-checkmark"></i></label></th>
+					<th>Name</th>
+					<th>Controller</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($records as $perm) : ?>
+					<tr data-route="/permissions/edit/<?php echo $perm->id; ?>">
+						<td class="checkcol"><label><input type="checkbox" value="<?php echo $perm->id; ?>"><i class="lni lni-checkmark"></i></label></div>
+						<td><?php echo $perm->name; ?> </td>
+						<td><?php echo $perm->controller; ?> </td>
+						<td><?php echo $perm->action; ?> </td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+

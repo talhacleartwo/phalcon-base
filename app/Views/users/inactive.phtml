@@ -1,0 +1,28 @@
+<?php
+echo $this->getContent();
+?>
+<div class="row">
+	<div class="columns twelve">
+		<table class="table datatable">
+			<thead class="thead-light">
+				<tr>
+					<th class="checkcol"><label class="all"><input type="checkbox" class="all"/><i class="lni lni-checkmark"></i></label></th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($records as $user) : ?>
+					<tr data-route="/users/edit/<?php echo $user->id; ?>">
+						<td class="checkcol"><label><input type="checkbox" value="<?php echo $user->id; ?>"><i class="lni lni-checkmark"></i></label></div>
+						<td><?php echo $user->firstname; ?> </td>
+						<td><?php echo $user->lastname; ?> </td>
+						<td><?php echo $user->email; ?> </td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>
+

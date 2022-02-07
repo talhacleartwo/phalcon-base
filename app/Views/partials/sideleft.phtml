@@ -1,0 +1,102 @@
+<!-- BEGIN: Left Aside -->
+<button class="m-aside-left-close  m-aside-left-close--skin-light " id="m_aside_left_close_btn">
+	<i class="la la-close"></i>
+</button>
+<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light ">
+	<!-- BEGIN: Aside Menu -->
+	<div 		id="m_ver_menu" 		class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light " 		data-menu-vertical="true"		 m-menu-scrollable="0" m-menu-dropdown-timeout="500"  		>
+
+		<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
+
+			<?php if ($this->acl->isAllowed($identity['profile'], 'dashboard', 'index')):?>
+			<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+				<?php echo $this->tag->linkTo(["dashboard", '<i class="m-menu__link-icon la la-home"></i> <span class="m-menu__link-text">Dashboard</span>', "class" => "m-menu__link"]); ?>
+			</li>
+
+         	<?php endif;?>
+
+         	<?php $oneArray = ['contacts',  'leads']; ?>
+         	<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+				<a  href="javascript:;" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-layers"></i>
+					<span class="m-menu__link-text">
+						CRM System
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+				<div class="m-menu__submenu ">
+					<span class="m-menu__arrow"></span>
+					<ul class="m-menu__subnav">
+						<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
+							<span class="m-menu__link">
+								<span class="m-menu__link-text">
+									 Crm System
+								</span>
+							</span>
+						</li>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<?php //echo $this->tag->linkTo(["currentcontacts", '<i class="m-menu__link-icon flaticon-map"></i> <span class="m-menu__link-text"> Contacts </span>', "class" => "m-menu__link"]); ?>
+						</li>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<?php //echo $this->tag->linkTo(["leads", '<i class="m-menu__link-icon flaticon-map"></i> <span class="m-menu__link-text"> New Leads </span>', "class" => "m-menu__link"]); ?>
+						</li>
+
+					</ul>
+				</div>
+			</li>
+
+			<?php if ($this->acl->isAllowed($identity['profile'], 'options', 'index')):?>
+			<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+				<?php echo $this->tag->linkTo(["options", '<i class="m-menu__link-icon flaticon-light"></i> <span class="m-menu__link-text"> Settings </span>', "class" => "m-menu__link"]); ?>
+			</li>
+			<?php endif;?>
+			<?php $facultyArray = ['users',  'staff', 'profiles', 'permissions']; ?>
+
+			<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+				<a  href="javascript:;" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-clipboard"></i>
+					<span class="m-menu__link-text">
+						Faculty
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+				<div class="m-menu__submenu ">
+					<span class="m-menu__arrow"></span>
+					<ul class="m-menu__subnav">
+						<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
+							<span class="m-menu__link">
+								<span class="m-menu__link-text">
+									Faculty Module
+								</span>
+							</span>
+						</li>
+						<?php if ($this->acl->isAllowed($identity['profile'], 'staff', 'index')):?>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<?php echo $this->tag->linkTo(["staff", '<i class="m-menu__link-icon flaticon-map"></i> <span class="m-menu__link-text"> Staff </span>', "class" => "m-menu__link"]); ?>
+						</li>
+						<?php endif;?>
+						<?php if ($this->acl->isAllowed($identity['profile'], 'users', 'index')):?>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<?php echo $this->tag->linkTo(["users", '<i class="m-menu__link-icon flaticon-users"></i> <span class="m-menu__link-text"> Users </span>', "class" => "m-menu__link"]); ?>
+						</li>
+						<?php endif; ?>
+						<?php if ($this->acl->isAllowed($identity['profile'], 'profiles', 'index')):?>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<?php echo $this->tag->linkTo(["profiles", '<i class="m-menu__link-icon flaticon-profile-1"></i> <span class="m-menu__link-text"> Profiles </span>', "class" => "m-menu__link"]); ?>
+						</li>
+						<?php endif;?>
+                		<?php if ($this->acl->isAllowed($identity['profile'], 'permissions', 'index')):?>
+                		<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+                			<?php echo $this->tag->linkTo(["permissions", '<i class="m-menu__link-icon flaticon-user-settings"></i> <span class="m-menu__link-text"> Permissions </span>', "class" => "m-menu__link"]); ?>
+                		</li>
+						<?php endif;?>
+					</ul>
+				</div>
+			</li>
+
+		</ul>
+
+	</div>
+	<!-- END: Aside Menu -->
+</div>
+<!-- END: Left Aside -->

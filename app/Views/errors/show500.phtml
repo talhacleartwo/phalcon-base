@@ -1,0 +1,16 @@
+<div class="row full-height">
+	<div class="columns twelve full-height">
+		<div class="jumbo">
+			<div class="container">
+				<h1>500 Server Error</h1>
+				<p>Looks like something went wrong while processing your request.</p>
+				<?php echo isset($msg) ? '<pre>Msg: ' . $msg . '</pre>' : ""; ?>
+				<?php echo isset($trace) ? '<pre>Trace: ' . $trace . '</pre>' : ""; ?>
+				<div class="btn-bar">
+					<a onclick="window.history.back()" class="btn btn-secondary">Back</a>
+					<a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

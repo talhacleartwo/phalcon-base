@@ -1,0 +1,1 @@
+ALTER TABLE `core_accounts` ADD `createdon` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `notes`, ADD `createdby` VARCHAR(250) NOT NULL AFTER `createdon`, ADD `modifiedon` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `createdby`, ADD `modifiedby` VARCHAR(250) NOT NULL AFTER `modifiedon`, ADD `deletedon` DATETIME NULL AFTER `modifiedby`;

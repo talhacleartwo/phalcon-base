@@ -1,0 +1,31 @@
+<form id="mainform" method="POST">
+	<ul class="tab_headers" data-set="useraccount">
+		<li class="active" data-tab="preferences">
+			<a>Account Preferences</a>
+		</li>
+		<li data-tab="2fa">
+			<a>Two Factor Authentication</a>
+		</li>
+	</ul>
+	<div class="tab_bodys" data-set="useraccount">
+		<div class="tab_body active" data-tab="preferences">
+			<h5>Account Preferences</h5>
+		</div>
+		<div class="tab_body" data-tab="2fa">
+			<h5>Two Factor Authentication</h5>
+			<div class="form-group">
+				<div class="checkbox">
+					<label class="switch onoff">
+						<input type="checkbox" value="1" name="enable2fa" <?php echo ($user->getPreference('enable2fa') == 1 ? 'checked' : ''); ?>/>
+						<span class="slider"></span>
+					</label>
+					<label class="label">Two Factor Authentication</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Scan the QR code below to set up 2FA in the Goole Authenticator App:</label>
+				<?php echo '<img src="' . \Sonata\GoogleAuthenticator\GoogleQrUrl::generate($user->email, $user->twofasecret, $systemname) . '"/>'; ?>
+			</div>
+		</div>
+	</div>
+</form>

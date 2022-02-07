@@ -1,0 +1,145 @@
+<form id="mainform" method="POST" action="/users/edit/<?php echo $record->id; ?>">
+	<div class="row">
+		<div class="columns eight">
+			<div class="card">
+				<div class="card_head">
+					<h5 class="card_head_title">
+						User Details
+					</h5>
+					<div class="card_head_toolbar">
+						<button title="Reset Password" id="reset_password" data-modal="resetpassmodal" class="btn btn-primary btn-sm">
+							Reset Password
+						</button>
+					</div>
+				</div>
+				<div class="card_body">
+					<div class="row">
+						<div class="columns four">
+							<div class="form-group">
+								<label>First Name</label>
+								<?php echo $form->render('firstname');?>
+								<span class="form-text text-muted">Enter the users first name.</span>
+							</div>
+						</div>
+						<div class="columns four">
+							<div class="form-group">
+								<label>Last Name</label>
+								<?php echo $form->render('lastname');?>
+								<span class="form-text text-muted">Enter the users last name.</span>
+							</div>
+						</div>
+						<div class="columns four">
+							<div class="form-group">
+								<label>Email Address</label>
+								<?php echo $form->render('email');?>
+								<span class="form-text text-muted">Enter the users Email Address.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="columns four">
+			<div class="card">
+				<div class="card_head">
+					<h5 class="card_head_title">
+						User Roles
+					</h5>
+				</div>
+				<div class="card_body">
+					<?php
+						echo $form->render('roles');
+						$myRoles = [];
+						foreach($record->AssignedRoles as $ar)
+						{
+							$myRoles[] = $ar->roleid;
+						}
+						foreach($roles as $role)
+						{
+							//$selected = (in_array($role->id,$myRoles) ? 'checked' : '');
+							echo '<label class="checkbox-inline">';
+								echo '<input type="checkbox" class="rolecb" value="'.$role->id.'"/>' . $role->name;
+								echo '<span></span>';
+							echo '</label>';
+						}
+					?>
+					<script>
+						jQuery(document).ready(function(){
+							var myroles = JSON.parse(jQuery('input[name="roles"]').val());
+							var boxes = jQuery('.rolecb');
+							jQuery(boxes).each((e) => {
+								if(myroles.indexOf(boxes[e].value) !== -1){boxes[e].checked =true;}
+							});
+								
+							jQuery('.rolecb').change(function(){
+								var r = jQuery('.rolecb:checked');
+								var d = [];
+								for(let x=0;x<r.length;x++){d.push(r[x].value);}
+								jQuery('input[name="roles"]').val(JSON.stringify(d));
+							});
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<div class="modal fade" id="resetpassmodal">
+	<form class="kt-form" id="sp_form" method="POST" _lpchecked="1">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Reset Users Password</h5>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label>New Password</label>
+						<input type="text" name="password" class="form-control" autocomplete="new-password" required>
+					</div>
+					<div class="form-group">
+						<label>Confirm Password</label>
+						<input type="password" name="confirmpassword" class="form-control" autocomplete="new-password" required>
+					</div>
+					<div class="error" style="color:red;"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" id="ct_submit" class="btn btn-primary">Reset</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<script>
+	$(document).ready(function(){
+		/*$('#mainform').submit(function(e){
+			$.ajax({
+				url: $('#mainform').attr('action'),
+				type: $('#mainform').attr('method'),
+				data: new FormData($('#mainform')[0]),
+				success: function(res){},
+				error: function(err){}
+			})
+		});*/
+		
+		
+		/*$('#reset_password').click(function(){
+			$('#resetpassmodal').modal('show');
+		});*/
+		$.get("https://www.dinopass.com/password/strong", function(data){
+			$("#resetpassmodal .form-control").val(data);
+		});
+		$('#resetpassmodal .form-control').keyup(function(e){
+			$('#resetpassmodal .error').text('');
+			
+			var p1 = $('#resetpassmodal input')[0];
+			var p2 = $('#resetpassmodal input')[1];
+			var i = $('#resetpassmodal button');
+			$(i).removeAttr('disabled');
+			if($(p1).val() !== $(p2).val()){$('#resetpassmodal .error').text('Passwords don\'t match.');$(i).prop('disabled',true);return;}
+			if($(p1).val().length < 8){$('#resetpassmodal .error').text('Password must be at least 8 characters.');$(i).prop('disabled',true);return;}
+			var letters = /^(?=.*\d)(?=.*[a-zA-Z]).{8,100}$/;
+			var m = $(p1).val().match(letters);
+			if(!m){$('#resetpassmodal .error').text('Password must contain letters and numbers.');$(i).prop('disabled',true);return;}
+		});
+	});
+</script>

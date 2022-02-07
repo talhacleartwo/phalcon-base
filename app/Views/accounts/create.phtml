@@ -1,0 +1,70 @@
+<form id="mainform" method="POST">
+	<div class="row">
+		<div class="columns four">
+			<div class="card">
+				<div class="card_body">
+					<div class="form-group">
+						<label>Company Name</label>
+						<?php echo $form->render('companyname');?>
+					</div>
+					<div class="form-group">
+						<label>Email Address</label>
+						<?php echo $form->render('email');?>
+					</div>
+					<div class="form-group">
+						<label>Telephone</label>
+						<?php echo $form->render('telephone');?>
+					</div>
+					<div class="form-group">
+						<label>Alt Telephone</label>
+						<?php echo $form->render('telephone2');?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="columns four">
+			<div class="card">
+				<div class="card_body">
+					<div class="form-group">
+						<label>Address Line 1</label>
+						<?php echo $form->render('addressline1');?>
+					</div>
+					<div class="form-group">
+						<label>Address Line 2</label>
+						<?php echo $form->render('addressline2');?>
+					</div>
+					<div class="form-group">
+						<label>City</label>
+						<?php echo $form->render('city');?>
+					</div>
+					<div class="form-group">
+						<label>County</label>
+						<?php echo $form->render('county');?>
+					</div>
+					<div class="form-group">
+						<label>Postcode</label>
+						<?php echo $form->render('postcode');?>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="columns four">
+			<div class="card">
+				<div class="card_body">
+					<div class="form-group">
+						<label>Website</label>
+						<?php echo $form->render('website');?>
+					</div>
+					<div class="form-group">
+						<label>Account Number</label>
+						<?php echo $form->render('accountnumber');?>
+					</div>
+					<div class="form-group">
+						<label>Notes</label>
+						<?php echo $form->render('notes');?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

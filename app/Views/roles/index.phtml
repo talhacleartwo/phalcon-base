@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="columns twelve">
+		<table class="table datatable">
+			<thead class="thead-light">
+				<tr>
+					<th class="checkcol"><label class="all"><input type="checkbox" class="all"/><i class="lni lni-checkmark"></i></label></th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($records as $role) : ?>
+					<tr data-route="/roles/edit/<?php echo $role->id; ?>">
+						<td class="checkcol"><label><input type="checkbox" value="<?php echo $role->id; ?>"><i class="lni lni-checkmark"></i></label></div>
+						<td><?php echo $role->name; ?> </td>
+					</tr>
+				<?php endforeach; ?>
+			</tbody>
+		</table>
+	</div>
+</div>

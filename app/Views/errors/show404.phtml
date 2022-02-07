@@ -1,0 +1,27 @@
+<div class="row full-height">
+	<div class="columns twelve full-height">
+		<div class="jumbo">
+			<div class="container">
+				<h1>404 Not Found</h1>
+				<p>Looks like we couldn't find what you're looking for.</p>
+				<?php echo isset($msg) ? '<pre>Msg: ' . $msg . '</pre>' : ""; ?>
+				<?php echo isset($trace) ? '<pre>Trace: ' . $trace . '</pre>' : ""; ?>
+				<div class="btn-bar">
+					<a onclick="window.history.back()" class="btn btn-secondary">Back</a>
+					<a href="/dashboard" class="btn btn-secondary">Dashboard</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+	.full-height{
+		height:100%;
+	}
+	.jumbo {
+		display: flex;
+		flex: 1 1 0;
+		align-items: center;
+		height: 100%;
+	}
+</style>

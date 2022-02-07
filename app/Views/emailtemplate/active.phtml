@@ -1,0 +1,32 @@
+<?php
+echo $this->getContent();
+?>
+<div class="row">
+    <div class="columns twelve">
+        <table class="table datatable">
+            <thead class="thead-light">
+            <tr>
+                <th class="checkcol"><label class="all"><input type="checkbox" class="all"/><i
+                                class="lni lni-checkmark"></i></label></th>
+                <th>Account Number</th>
+                <th>Company Name</th>
+                <th>Created On</th>
+                <th>Created By</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($records as $record) : ?>
+                <tr data-route="/accounts/edit/<?php echo $record->id; ?>">
+                    <td class="checkcol"><label><input type="checkbox" value="<?php echo $record->id; ?>"><i class="lni lni-checkmark"></i></label></td>
+                    <td><?php echo $record->templatename; ?> </td>
+                    <td><?php echo $record->subject; ?> </td>
+                    <td><?php echo $record->Displaydate($record->createdon); ?> </td>
+                    <td><?php echo $record->createdby; ?> </td>
+                  </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
